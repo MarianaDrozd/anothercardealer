@@ -178,8 +178,8 @@ class Property(models.Model):
 
 
 class Picture(models.Model):
-    url = models.ImageField(
-        upload_to='pictures',
+    url = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
     )
