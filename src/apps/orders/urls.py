@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.orders.views import OrdersListView, OrdersDetailView, serialized_orders
+from src.apps.orders.views import OrdersListView, OrdersDetailView, serialized_orders
 
 app_name = 'orders'
 

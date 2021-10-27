@@ -1,6 +1,6 @@
 from django.core import serializers
 from django.http import HttpResponse
-from apps.cars.models import Car
+from src.apps.cars.models import Car
 from django.views.generic import ListView, DetailView
 
 

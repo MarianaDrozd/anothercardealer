@@ -1,6 +1,5 @@
 # import phone_field
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
@@ -13,7 +12,7 @@ class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    phone = PhoneNumberField(null=True)
+    phone = models.CharField(max_length=20, null=True)
     message = models.TextField(max_length=100)
 
     def __str__(self):

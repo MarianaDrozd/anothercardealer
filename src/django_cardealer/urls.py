@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django_cardealer.views import MainPageTemplateView
+from src.django_cardealer.views import MainPageTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageTemplateView.as_view(),),
-    path('cars/', include('apps.cars.urls', namespace='cars')),
-    path('dealers/', include('apps.dealers.urls', namespace='dealers')),
-    path('orders/', include('apps.orders.urls', namespace='orders')),
-    path('newsletters/', include('apps.newsletters.urls', namespace='newsletters')),
+    path('cars/', include('src.apps.cars.urls', namespace='cars')),
+    path('dealers/', include('src.apps.dealers.urls', namespace='dealers')),
+    path('orders/', include('src.apps.orders.urls', namespace='orders')),
+    path('newsletters/', include('src.apps.newsletters.urls', namespace='newsletters')),
 ]

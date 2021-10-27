@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.dealers.views import DealersListView, DealersDetailView, serialized_dealers
+from src.apps.dealers.views import DealersListView, DealersDetailView, serialized_dealers
 
 app_name = 'dealers'
 

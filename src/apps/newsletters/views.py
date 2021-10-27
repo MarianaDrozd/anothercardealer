@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 
-from apps.newsletters.forms import NewsLetterModelForm
+from src.apps.newsletters.forms import NewsLetterModelForm
 
 # Create your views here.
 

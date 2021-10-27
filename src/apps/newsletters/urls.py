@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.newsletters.views import NewNewsLetterView, SuccessTemplateView
+from src.apps.newsletters.views import NewNewsLetterView, SuccessTemplateView
 
 app_name = 'newsletters'
 

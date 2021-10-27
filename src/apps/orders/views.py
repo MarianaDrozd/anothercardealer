@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
-from apps.orders.models import Order
+from src.apps.orders.models import Order
 
 
 class OrdersListView(ListView):

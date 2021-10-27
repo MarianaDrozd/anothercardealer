@@ -2,9 +2,9 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 # Create your views here.
-from apps.dealers.models import Dealer
+from src.apps.dealers.models import Dealer
 
-from apps.cars.models import Car
+from src.apps.cars.models import Car
 
 
 class DealersListView(ListView):

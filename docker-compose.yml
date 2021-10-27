@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.11-alpine
+    container_name: cardealer_db
+    env_file:
+      - docker/envs/.env
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: cardealer
+    env_file:
+      - docker/envs/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    command:
+      ["python", "manage.py", "runserver", "0.0.0.0:8000"]

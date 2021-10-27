@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from apps.cars.models import Car, Color, Brand, Model, Property, Picture
+from src.apps.cars.models import Car, Color, Brand, Model, Property, Picture
 
 admin.site.register(Car)
 admin.site.register(Color)
