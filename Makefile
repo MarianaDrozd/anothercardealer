@@ -11,5 +11,8 @@ app:
 start_compose:
 	@docker-compose up
 
+test_env:
+	@cat ./docker/envs/env_example > ./docker/envs/.env
+
 test_user:
 	@docker exec -it -w /code cardealer python manage.py createsuperuser

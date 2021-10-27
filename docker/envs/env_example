@@ -1,0 +1,9 @@
+SECRET_KEY="django-insecure-6h0rs!wv(s6#ht^86)s=9q!*xj9x@h-&0wxmhaymni2k-bbi43"
+
+DEBUG=1
+
+POSTGRES_DB=django_views_forms
+POSTGRES_USER=django_orm
+POSTGRES_PASSWORD=django_orm
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
