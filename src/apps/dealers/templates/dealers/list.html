@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Dealers list</title>
 </head>
 <body>
+{% include "navbar.html" %}
 <h1 align="center">Dealers</h1>
-<ul>
+<table class="table">
+    <thead align="center" class="thead-light col-form-label-lg">
+        <tr>
+            <th>Dealer's name</th>
+            <th>City</th>
+            <th>Email</th>
+
+
+        </tr>
+    </thead>
+    <tbody align="center">
         {% for dealer in dealers %}
-        <li>
-            <p><h2><a href="{% url 'dealers:dealer_detail' dealer.id %}">{{ dealer.title }}</a></h2></p>
-            <p><h3>City: {{ dealer.city }}</h3></p>
-        </li>
+        <tr>
+            <td><a href="{% url 'dealers:dealer_detail' dealer.id %}">{{ dealer.title }}</a></td>
+            <td>{{ dealer.city }}, {{ dealer.city.country }}</td>
+            <td>{{ dealer.email }}</td>
         {% empty %}
         <li align="center">Sorry, there's no dealers yet. Come here later :)</li>
         {% endfor %}
-    </ul>
+        </tr>
+    </tbody>
+</table>
+{% include "footer.html" %}
 </body>
 </html>
+

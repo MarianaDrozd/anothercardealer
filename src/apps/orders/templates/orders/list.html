@@ -5,16 +5,32 @@
     <title>Order list</title>
 </head>
 <body>
-<h1>Orders</h1>
-<ul>
+{% include "navbar.html" %}
+<h1 align="center">Orders</h1>
+<table class="table">
+    <thead align="center" class="thead-light col-form-label-lg">
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Car</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody align="center">
         {% for order in orders %}
-        <li>
-            <p><a href="{% url 'orders:order_detail' order.id %}">{{ order.last_name }} {{ order.first_name }}</a></p>
-            <p>Email: {{ order.email }}</p>
-        </li>
+            <tr>
+                <td>{{ order.id }}</td>
+                <td><a href="{% url 'orders:order_detail' order.id %}">{{ order.first_name }} {{ order.last_name }}</a></td>
+                <td>{{ order.car.model.brand }} {{ order.car.model }}</td>
+                <td> {{ order.car.price }}</td>
+                <td>{{ order.car.status }}</td>
+            </tr>
         {% empty %}
-        <li>Sorry, there's no orders yet. Come here later :)</li>
+        <h3>Sorry, there's no order yet. Come here later :)</h3>
         {% endfor %}
-    </ul>
+    </tbody>
+</table>
+{% include "footer.html" %}
 </body>
 </html>

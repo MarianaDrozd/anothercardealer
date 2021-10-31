@@ -5,14 +5,14 @@
     <title>Dealer details</title>
 </head>
 <body>
-<h1>Dealer: {{ object.title }}</h1>
-<div>
+{% include "navbar.html" %}
+<h1 align="center">Dealer: {{ object.title }}</h1>
+<div align="center">
     <p>Email: {{ object.email }}</p>
     <p>City: {{ object.city.name }}, {{ object.city.country.name }}</p>
     <p>Cars:</p>
-    <ul>
-        <table style="border-spacing: 120px 2px">
-        <thead>
+        <table class="table">
+        <thead class="thead-light col-form-label-lg">
         <tr>
             <th>Brand</th>
             <th>Model</th>
@@ -20,22 +20,27 @@
             <th>City</th>
             <th>Status</th>
             <th>Registration Date</th>
+            <th>Details</th>
         </tr>
         </thead>
         <tbody>
         {% for car in cars %}
-        <tr>
-            <td>{{ car.model.brand.name }}</td>
-            <td>{{ car.model.name }}</td>
-            <td>{{ car.price }}</td>
-            <td>{{ car.dealer.city }}</td>
-            <td>{{ car.status }}</td>
-            <td>{{ car.first_registration_date }}</td>
-            <td><a href="{% url 'cars:car_detail' car.slug %}">See details...</a></td>
-        </tr>
+            <tr>
+                <td>{{ car.model.brand.name }}</td>
+                <td>{{ car.model.name }}</td>
+                <td>{{ car.price }}</td>
+                <td>{{ car.dealer.city }}</td>
+                <td>{{ car.status }}</td>
+                <td>{{ car.first_registration_date }}</td>
+                <td><a href="{% url 'cars:car_detail' car.slug %}">See details...</a></td>
+            </tr>
+        </tbody>
+
         {% empty %}
         <li>Sorry, there's no car yet. Come here later :)</li>
         {% endfor %}
+        </table>
 </div>
+{% include "footer.html" %}
 </body>
 </html>

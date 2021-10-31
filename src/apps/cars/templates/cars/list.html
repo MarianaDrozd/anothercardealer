@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Cars List</title>
+</head>
+<body>
+{% include "navbar.html" %}
 <h1 align="center">Cars</h1>
 <div>
-    <table style="border-spacing: 100px 5px" align="center">
-        <thead>
+    <table class="table" align="center">
+        <thead class="thead-light col-form-label-lg" align="center">
         <tr>
             <th>Brand</th>
             <th>Model</th>
@@ -15,17 +18,18 @@
             <th>Dealer</th>
             <th>Contacts</th>
             <th>Status</th>
+            <th>Details</th>
 
         </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
         {% for car in cars %}
         <tr>
             <td>{{ car.model.brand.name }}</td>
             <td>{{ car.model.name }}</td>
             <td>{{ car.price }}</td>
             <td>{{ car.dealer.city }}</td>
-            <td>{{ car.dealer.title }}</td>
+            <td><a href="{% url 'dealers:dealer_detail' car.dealer.id %}">{{ car.dealer.title }}</a></td>
             <td>{{ car.dealer.email }}</td>
             <td>{{ car.status }}</td>
             <td><a href="{% url 'cars:car_detail' car.slug %}">See details...</a></td>
@@ -36,8 +40,6 @@
         </tbody>
     </table>
 </div>
-</head>
-<body>
-
+{% include "footer.html" %}
 </body>
 </html>
