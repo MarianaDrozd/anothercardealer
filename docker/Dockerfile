@@ -10,4 +10,7 @@ RUN pip install -r requirements.txt
 
 COPY . /code/
 
+RUN adduser -D mariana
+USER mariana
+
 CMD ["make migrate"]

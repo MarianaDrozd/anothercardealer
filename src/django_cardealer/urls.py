@@ -24,4 +24,6 @@ urlpatterns = [
     path('dealers/', include('src.apps.dealers.urls', namespace='dealers')),
     path('orders/', include('src.apps.orders.urls', namespace='orders')),
     path('newsletters/', include('src.apps.newsletters.urls', namespace='newsletters')),
+    path('', include("src.apps.users.urls")),
+    path('users/', include('django.contrib.auth.urls'))
 ]
