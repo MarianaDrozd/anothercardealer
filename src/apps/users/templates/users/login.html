@@ -6,12 +6,17 @@
     <title>Login</title>
 </head>
 <body>
+{% include "navbar.html" %}
 <div align="center">
+    <h1>Login</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Login">
+    <p class="text-center">Don't have an account? You can <a href="/users/register">register</a>.</p>
+    <a href="/" ><h3>Go to the main page...</h3></a>
 </form>
 </div>
+{% include "footer.html" %}
 </body>
 </html>

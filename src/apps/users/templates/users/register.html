@@ -6,9 +6,11 @@
     <title>Registration</title>
 </head>
 <body>
+{% include "navbar.html" %}
 {% block content %}
 <!--Register-->
 <div align="center">
+    <h1>Registration</h1>
 <form method="post">
     <div class="form-group" >
         {% csrf_token %}
@@ -21,5 +23,6 @@
 
 </div>
 {% endblock %}
+{% include "footer.html" %}
 </body>
 </html>
