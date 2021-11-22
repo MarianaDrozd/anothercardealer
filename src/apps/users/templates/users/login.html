@@ -11,9 +11,9 @@
     <h1>Login</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-    <p class="text-center">Don't have an account? You can <a href="/users/register">register</a>.</p>
+    <h5>{{ form.as_p }}</h5>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <p class="text-center"><h5>Don't have an account? You can <a href="/users/register">register</a> now.</h5></p>
     <a href="/" ><h3>Go to the main page...</h3></a>
 </form>
 </div>

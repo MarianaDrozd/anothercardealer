@@ -24,9 +24,23 @@ class Car(models.Model):
         'cars.Model',
         on_delete=models.CASCADE,
     )
+
+    ENGINE_TYPE_STRAIGHT = 'straight'
+    ENGINE_TYPE_INLINE = 'inline'
+    ENGINE_TYPE_FLAT = 'flat'
+    ENGINE_TYPE_V = 'v'
+
+    ENGINE_TYPES = (
+        (ENGINE_TYPE_STRAIGHT, 'Straight'),
+        (ENGINE_TYPE_INLINE, 'Inline'),
+        (ENGINE_TYPE_FLAT, 'Flat'),
+        (ENGINE_TYPE_V, 'V')
+    )
+
     engine_type = models.CharField(
         max_length=75,
-        default=0,
+        choices=ENGINE_TYPES,
+        default=ENGINE_TYPE_STRAIGHT,
     )
 
     POLLUTANT_CLASS_Aa = "class A+"
@@ -57,7 +71,13 @@ class Car(models.Model):
 
     price = models.PositiveIntegerField(default=0)
 
-    fuel_type = models.CharField(max_length=75)
+    property = models.ManyToManyField('cars.Property')
+
+    fuel_type = models.ForeignKey(
+        'cars.FuelType',
+        on_delete=models.CASCADE,
+        related_name='cars'
+    )
 
     STATUS_PENDING = 'pending'
     STATUS_PUBLISHED = 'published'
@@ -83,7 +103,22 @@ class Car(models.Model):
 
     capacity = models.PositiveIntegerField(default=0)
 
-    gear_case = models.CharField(max_length=75)
+    MECHANICAL = 'mechanical'
+    AUTOMATIC = 'automatic'
+    VARIATOR = 'variator'
+    ROBOTIC = 'robotic'
+
+    GEAR_CASES = (
+        (MECHANICAL, 'Mechanical'),
+        (AUTOMATIC, 'Automatic'),
+        (VARIATOR, 'Variator'),
+        (ROBOTIC, 'Robotic')
+    )
+
+    gear_case = models.CharField(
+        max_length=75,
+        choices=GEAR_CASES,
+        default=AUTOMATIC)
 
     number = models.CharField(max_length=30)
 
@@ -96,8 +131,8 @@ class Car(models.Model):
     picture = models.ForeignKey('cars.Picture', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
-        verbose_name = "Машина"
-        verbose_name_plural = "Машини"
+        verbose_name = "Car"
+        verbose_name_plural = "Cars"
 
     def __str__(self):
         return self.slug
@@ -162,6 +197,7 @@ class Property(models.Model):
     )
 
     name = models.CharField(max_length=75)
+
     category = models.CharField(
         max_length=75,
         choices=CATEGORY_CHOICES,
@@ -177,14 +213,43 @@ class Property(models.Model):
         verbose_name_plural = 'Properties'
 
 
+class FuelType(models.Model):
+    FUEL_TYPE_PETROL = 'petrol'
+    FUEL_TYPE_DIESEL = 'diesel'
+    FUEL_TYPE_ELECTRIC = 'electric'
+
+    FUEL_TYPE_CHOICES = (
+        (FUEL_TYPE_PETROL, 'Petrol'),
+        (FUEL_TYPE_DIESEL, 'Diesel'),
+        (FUEL_TYPE_ELECTRIC, 'Electric')
+    )
+
+    fueltype = models.CharField(
+        max_length=30,
+        choices=FUEL_TYPE_CHOICES,
+        default=FUEL_TYPE_PETROL,
+    )
+
+    def __str__(self):
+        return self.fueltype
+
+    class Meta:
+        verbose_name = 'Fuel Type'
+        verbose_name_plural = 'Fuel Types'
+
+
 class Picture(models.Model):
-    url = models.URLField(
+    url = models.ImageField(
+        upload_to='static/pictures',
         max_length=255,
         null=True,
         blank=True,
     )
     position = models.IntegerField()
     metadata = models.TextField()
+
+    def __str__(self):
+        return self.url.name
 
     class Meta:
         verbose_name = 'Picture'

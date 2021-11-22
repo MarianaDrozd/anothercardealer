@@ -13,8 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+from src.django_cardealer import settings
 from src.django_cardealer.views import MainPageTemplateView
 
 urlpatterns = [
@@ -26,3 +29,5 @@ urlpatterns = [
     path('newsletters/', include('src.apps.newsletters.urls', namespace='newsletters')),
     path('users/', include("src.apps.users.urls", namespace='users')),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
